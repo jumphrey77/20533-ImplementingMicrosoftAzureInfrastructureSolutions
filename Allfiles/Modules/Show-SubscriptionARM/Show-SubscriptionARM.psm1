@@ -23,7 +23,7 @@ Function Show-SubscriptionARM
         {
             for($i = 1;$i -lt ($subs.Count + 1); $i++)
             {
-                Write-Host "[$i] - " $subs[$i-1].SubscriptionName "- Id: " $subs[$i-1].SubscriptionId
+                Write-Host "[$i] - " $subs[$i-1].Name "- Id: " $subs[$i-1].Id
             }
 
             Write-Host 
@@ -34,9 +34,9 @@ Function Show-SubscriptionARM
             {
                 if($selectedEntry -ge 1 -and $selectedEntry -lt ($subs.Count + 1))
                 {
-                    Write-Host "Using subscription: " $subs[$selectedEntry - 1].SubscriptionName " Id: " $subs[$selectedEntry - 1].SubscriptionId " (Resource Manager)"
-                    Set-AzureRmContext -SubscriptionId $subs[$selectedEntry - 1].SubscriptionId
-		    $global:subscriptionId = $subs[$selectedEntry - 1].SubscriptionId
+                    Write-Host "Using subscription: " $subs[$selectedEntry - 1].Name " Id: " $subs[$selectedEntry - 1].Id " (Resource Manager)"
+                    Set-AzureRmContext -SubscriptionId $subs[$selectedEntry - 1].Id
+		    $global:subscriptionId = $subs[$selectedEntry - 1].Id
                     break               
                 }
             }
@@ -44,8 +44,8 @@ Function Show-SubscriptionARM
     }
     else 
     {
-        Write-Host "Using the subscription: " $subs[0].SubscriptionName " Id: " $subs[0].SubscriptionId " (Resource Manager)"
-        Set-AzureRmContext -SubscriptionId $subs[0].SubscriptionId
+        Write-Host "Using the subscription: " $subs[0].Name " Id: " $subs[0].Id " (Resource Manager)"
+        Set-AzureRmContext -SubscriptionId $subs[0].Id
     }
 
 }
